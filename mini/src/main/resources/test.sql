@@ -1,0 +1,55 @@
+--사용자 계정
+
+create table client(
+	id	varchar2(50)	primary key,
+	password	varchar2(50)	not null,
+	name	varchar2(50)	not null,
+	email	varchar2(100),
+	division	varchar2(50), not null,
+	idnu	varchar2(50)	unique,
+	address	varchar2(100)
+);
+
+insert into client
+values ();
+
+drop table client;
+
+create squence seq start with 1 increment by 1;
+
+--게시판
+create table bd(
+	bnum			number			primary key,	--글번호
+	id				varchar2(50)	not null,		--작성자 ID
+	title			varchar2(1000)	not null,		--글제목
+	content			varchar2(4000)	not null,		--글내용
+	hits			number			default 0,		--조회수	
+	inputdate		date			default	sysdate,--작성날짜
+	originalfile	varchar2(300),					--원래 파일명
+	savedfile		varchar2(300),					--저장된 파일명
+	foreign key(id) references client(id)
+);
+
+create sequence bd_seq start with 1 increment by 1;
+
+--리플
+create table re(
+	rnum	number	primary key,
+	bnum	number	not null,
+	id	varchar(50)	not null,
+	text	varchar(2000)	not null,
+	inputdate	date	default sysdate,
+	foreign key(bnum) references bd(bnum) on delete cascade 
+);
+
+create sequence re_seq;
+
+--
+
+
+
+
+
+
+
+

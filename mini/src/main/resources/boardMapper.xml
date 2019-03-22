@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 게시판 처리 SQL -->
+<mapper namespace="global.sesoc.test3.dao.BoardMapper">
+
+	<!-- 글쓰기 처리 -->
+	<insert id="write" parameterType="bd">
+	insert into bd (
+		bnum
+		, id
+		, title
+		, content
+		<if test="originalfile != null and savedfile != null">
+		, originalfile
+		, savedfile
+		</if>
+		)
+		values (
+			bd_seq.nextval
+			, #{id}
+			, #{title}
+			, #{content}
+			<if test="originalfile != null and savedfile != null">
+			, #{originalfile}
+			, #{savedfile}
+			</if>
+		)	
+		</insert>
+		
+	<!-- 게시판 목록 -->
+	<select id="list" resultType="bd">
+	select * from bd 
+	<where>
+		<if test="type == 'title'">
+		upper(title) like upper('%' || #{searchText} || '%')
+		</if>
+		<if test="type == 'id'">
+		upper(id) like upper('%' || #{searchText} || '%')
+		</if>
+	</where>
+	order by bnum desc
+	</select>
+
+	<!-- 총 글수 -->
+	<select id="recordsTotal" parameterType="String" resultType="int">
+	select count(*) from bd
+	<where>
+		<if test="type == 'title'">
+		upper(title) like upper('%' || #{searchText} || '%')
+		</if>
+		<if test="id == 'id'">
+		upper(id) like upper('%' || #{searchText} || '%')
+		</if>
+	</where>
+	</select>	
+	
+	<!-- 글읽기 -->
+	<select id="read" parameterType="int" resultType="bd">
+	select * from bd where bnum = #{bnum}
+	</select>
+	
+	<!-- 조회수 -->
+	<update id="hit" parameterType="int">
+	update bd set hits = hits + 1
+	where bnum = #{bnum}
+	</update>
+	
+	<!-- 글 하나 가져오기 -->
+	<select id="getBoard" parameterType="int" resultType="bd">
+	select * from bd where bnum = #{bnum}
+	</select>
+	
+	<!-- 글 수정 -->
+	<update id="updateWrite" parameterType="bd">
+	update bd 
+	set
+		title = #{title}
+		, content = #{content}
+		<if test="originalfile != null and savedfile != null">
+		, originalfile = #{originalfile}
+		, savedfile = #{savedfile}
+		</if>
+	where
+		bnum = #{bnum}
+	</update>
+	
+	<!-- 글 삭제 -->
+	<delete id="del" parameterType="bd">
+	delete from bd where bnum = #{bnum} and id like #{id}
+	</delete>
+
+
+
+</mapper>
+
+
+

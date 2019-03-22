@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="global.sesoc.test3.vo.ClientVO" alias="client" />
+		<typeAlias type="global.sesoc.test3.vo.BoardVO" alias="bd" />
+		<typeAlias type="global.sesoc.test3.vo.ReVO" alias="re" />
+	</typeAliases>
+	<mappers>
+		<mapper resource="clientMapper.xml" />
+		<mapper resource="boardMapper.xml" />
+		<mapper resource="reMapper.xml" />
+	</mappers>
+</configuration>

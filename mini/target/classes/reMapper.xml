@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 리플 처리 SQL -->
+<mapper namespace="global.sesoc.test3.dao.ReMapper">
+
+	<!-- 리플 등록 -->
+	<insert id="insert" parameterType="re">
+	insert into re (
+		rnum
+		, bnum
+		, id
+		, text)
+	values (
+		re_seq.nextval
+		, #{bnum}
+		, #{id}
+		, #{text})
+	</insert>
+	
+	<!-- 리플 리스트 -->
+	<select id="list" resultType="re">
+	select * from re where bnum = #{bnum}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</mapper>
+

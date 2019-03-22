@@ -1,0 +1,65 @@
+@CHARSET "UTF-8";
+
+
+@CHARSET "UTF-8";
+
+h1{
+	text-align: center;
+}
+table{
+	border-collapse: collapse;
+	width:1200px;
+	margin: auto;
+	text-align:center;
+	border: 2px solid black;
+}
+th{
+	border: 1px solid black;
+	width: 20%;
+	background-color: black;
+	color: white;
+}
+tr{
+	width: 80%;
+}
+tr:HOVER{
+	background-color: lightgray;
+}
+td{
+	border: 1px solid black;
+}
+.reply{
+	text-align: center;
+}
+
+.re_id{
+	width:10%;
+}
+.re_text{
+	width:60%;
+}
+.re_date{
+	width:20%;s
+}
+.board_content{
+	padding:inherit;
+	height: 300px;
+}
+.b{
+	text-align: right;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
